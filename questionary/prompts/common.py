@@ -247,7 +247,7 @@ class InquirerControl(FormattedTextControl):
                     c.value in self.selected_options)]
 
 
-def build_validator(validate: Union[Type[Validator],
+def build_validator(validate: Union[Validator,
                                     Callable[[Text], bool],
                                     None]
                     ) -> Optional[Validator]:

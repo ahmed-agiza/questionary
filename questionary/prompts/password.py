@@ -11,7 +11,7 @@ from questionary.prompts import text
 
 def password(message: Text,
              default: Text = "",
-             validate: Union[Type[Validator],
+             validate: Union[Validator,
                              Callable[[Text], bool],
                              None] = None,  # noqa
              qmark: Text = DEFAULT_QUESTION_PREFIX,
