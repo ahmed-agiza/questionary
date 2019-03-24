@@ -29,7 +29,7 @@ extras_requires = {
 }
 
 setup(
-    name="questionary",
+    name="questionary_enhanced",
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
