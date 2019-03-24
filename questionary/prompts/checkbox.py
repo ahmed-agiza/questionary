@@ -14,6 +14,11 @@ from prompt_toolkit.shortcuts.prompt import (
 from prompt_toolkit.styles import merge_styles, Style
 from questionary.prompts import common
 from typing import List, Union, Dict, Any, Optional
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
+
 
 from questionary.constants import DEFAULT_STYLE, DEFAULT_QUESTION_PREFIX
 from questionary.prompts.common import Separator, InquirerControl, Choice
