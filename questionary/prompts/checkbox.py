@@ -54,6 +54,9 @@ def checkbox(message: Text,
 
     merged_style = merge_styles([DEFAULT_STYLE, style])
 
+    if not default is None and type(default) != list:
+        default = [default]
+
     ic = InquirerControl(choices, default)
 
     def get_prompt_tokens():
