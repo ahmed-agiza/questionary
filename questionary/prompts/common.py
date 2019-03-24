@@ -143,6 +143,19 @@ class InquirerControl(FormattedTextControl):
         # helper to convert from question format to internal format
         self.choices = []
 
+        if self.pointed_at is None and self.default is not None:
+            try:
+                if type(self.default) == list:
+                    index = choices.index(self.default[0])
+                    if index >= 0:
+                        self.pointed_at = index
+                else:
+                    index = choices.index(self.default)
+                    if index >= 0:
+                        self.pointed_at = index
+            except ValueError:
+                pass
+
         for i, c in enumerate(choices):
             choice = Choice.build(c)
 
