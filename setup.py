@@ -5,7 +5,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Avoids IDE errors, but actual version is read from version.py
-__version__ = None
+__version__ = '1.0.5'
 with open("questionary/version.py") as f:
     exec(f.read())
 
@@ -41,7 +41,6 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Topic :: Software Development :: Libraries",
     ],
-    zip_safe=True,
     packages=find_packages(exclude=["tests", "examples"]),
     version=__version__,
     install_requires=install_requires,
@@ -57,11 +56,11 @@ setup(
     maintainer_email="tombocklisch@gmail.com",
     license="MIT",
     keywords="cli ui inquirer questions prompt",
-    url="https://github.com/tmbo/questionary",
-    download_url="https://github.com/tmbo/questionary/archive/{}.tar.gz"
+    url="https://github.com/ahmed-agiza/questionary",
+    download_url="https://github.com/ahmed-agiza/questionary/archive/{}.tar.gz"
                  "".format(__version__),
     project_urls={
-        "Bug Reports": "https://github.com/tmbo/questionary/issues",
-        "Source": "https://github.com/tmbo/questionary",
+        "Bug Reports": "https://github.com/ahmed-agiza/questionary/issues",
+        "Source": "https://github.com/ahmed-agiza/questionary",
     },
 )
