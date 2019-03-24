@@ -5,7 +5,11 @@ from prompt_toolkit.formatted_text import (
 from prompt_toolkit.key_binding import KeyBindings
 from prompt_toolkit.keys import Keys
 from prompt_toolkit.styles import merge_styles, Style
-from typing import Optional, Text, Any
+from typing import Optional, Any
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 from questionary.constants import (
     NO_OR_YES, YES, NO, YES_OR_NO,

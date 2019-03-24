@@ -1,1 +1,2 @@
 prompt_toolkit==2.0.7
+typing-extensions=3.7.2

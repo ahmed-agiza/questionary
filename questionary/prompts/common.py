@@ -6,7 +6,11 @@ from prompt_toolkit.layout import (
     FormattedTextControl, Layout, HSplit,
     ConditionalContainer, Window)
 from prompt_toolkit.validation import Validator, ValidationError
-from typing import Optional, Any, List, Text, Dict, Union, Callable, Type, Tuple
+from typing import Optional, Any, List, Dict, Union, Callable, Tuple
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 from questionary.constants import (
     SELECTED_POINTER, INDICATOR_SELECTED,

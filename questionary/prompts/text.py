@@ -5,7 +5,11 @@ from prompt_toolkit.shortcuts.prompt import (
     PromptSession)
 from prompt_toolkit.styles import merge_styles, Style
 from prompt_toolkit.validation import Validator
-from typing import Text, Type, Union, Callable, Optional, Any
+from typing import Union, Callable, Optional, Any
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 from questionary.constants import DEFAULT_STYLE, DEFAULT_QUESTION_PREFIX
 from questionary.prompts.common import build_validator

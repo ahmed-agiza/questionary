@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from prompt_toolkit.output import ColorDepth
-from typing import Any, Text, Dict, Optional, List
-
-from questionary import utils
-from questionary.constants import DEFAULT_KBI_MESSAGE
 from questionary.prompts import AVAILABLE_PROMPTS, prompt_by_name
+from questionary.constants import DEFAULT_KBI_MESSAGE
+from questionary import utils
+from prompt_toolkit.output import ColorDepth
+from typing import Any, Dict, Optional, List
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 
 class PromptParameterException(ValueError):

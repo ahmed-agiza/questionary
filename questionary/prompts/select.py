@@ -2,7 +2,11 @@
 import time
 
 from questionary.prompts import common
-from typing import Any, Optional, Text, List, Union, Dict
+from typing import Any, Optional, List, Union, Dict
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 from prompt_toolkit.application import Application
 from prompt_toolkit.filters import IsDone, Never, Always

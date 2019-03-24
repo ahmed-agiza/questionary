@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
-from typing import Text, List, Optional, Any, Union, Dict
+from typing import List, Optional, Any, Union, Dict
+try:
+    from typing import Text, Type
+except ImportError:
+    from typing_extensions import Text, Type
 
 from prompt_toolkit.styles import Style
 
