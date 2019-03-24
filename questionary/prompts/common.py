@@ -109,13 +109,11 @@ class InquirerControl(FormattedTextControl):
                                               **kwargs)
 
     def _is_selected(self, choice):
-            def _is_selected(self, choice):
         isDefault = self.default is not None and (
             (type(self.default) == list and choice.value in self.default) or (choice.value == self.default))
         return ((choice.checked or
-                isDefault) and
+                 isDefault) and
                 not choice.disabled)
-
 
     def _assign_shortcut_keys(self):
         available_shortcuts = self.SHORTCUT_KEYS[:]
