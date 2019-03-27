@@ -5,7 +5,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Avoids IDE errors, but actual version is read from version.py
-__version__ = '1.0.8'
+__version__ = '1.0.9'
 with open("questionary/version.py") as f:
     exec(f.read())
 
@@ -22,6 +22,7 @@ tests_requires = [
 
 install_requires = [
     "prompt_toolkit~=2.0",
+    "typing==3.6.6",
     "typing-extensions==3.7.2"
 ]
 
