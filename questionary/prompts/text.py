@@ -11,7 +11,7 @@ from prompt_toolkit.styles import merge_styles, Style
 from prompt_toolkit.validation import Validator
 
 from questionary.completer import PathCompleter, ExecutableCompleter
-
+from prompt_toolkit.completion import WordCompleter
 
 try:
     from typing import Text, Type
@@ -28,6 +28,7 @@ def text(message: Text,
          style: Optional[Style] = None,
          path_autocomplete=False,
          exec_autocomplete=False,
+         custom_autocomplete=None,
          ** kwargs: Any) -> Question:
     """Prompt the user to enter a free text message.
 
@@ -69,12 +70,14 @@ def text(message: Text,
         'validator': validator,
         'complete_style': CompleteStyle.READLINE_LIKE,
     })
-
     if path_autocomplete:
         promptArgs['completer'] = PathCompleter(
             expanduser=True, delimiters=' \t\n;,')
     elif exec_autocomplete:
         promptArgs['completer'] = ExecutableCompleter(delimiters=' \t\n;,')
+    elif custom_autocomplete is not None and len(custom_autocomplete):
+        promptArgs['completer'] = WordCompleter(
+            custom_autocomplete, ignore_case=True)
 
     p = PromptSession(get_prompt_tokens,
                       **promptArgs,
