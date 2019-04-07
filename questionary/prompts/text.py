@@ -10,8 +10,7 @@ from prompt_toolkit.shortcuts.prompt import (
 from prompt_toolkit.styles import merge_styles, Style
 from prompt_toolkit.validation import Validator
 
-from questionary.completer import PathCompleter, ExecutableCompleter
-from prompt_toolkit.completion import WordCompleter
+from questionary.completer import PathCompleter, ExecutableCompleter, WordCompleter
 
 try:
     from typing import Text, Type
@@ -77,8 +76,7 @@ def text(message: Text,
         promptArgs['completer'] = ExecutableCompleter(delimiters=' \t\n;,')
     elif custom_autocomplete is not None and len(custom_autocomplete):
         promptArgs['completer'] = WordCompleter(
-            custom_autocomplete, ignore_case=True)
-
+            custom_autocomplete, ignore_case=True, sentence=True)
     p = PromptSession(get_prompt_tokens,
                       **promptArgs,
                       **kwargs)
