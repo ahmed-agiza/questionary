@@ -1,19 +1,22 @@
 # -*- coding: utf-8 -*-
 
+from questionary.question import Question
+from questionary.prompts.common import build_validator
+from questionary.constants import DEFAULT_STYLE, DEFAULT_QUESTION_PREFIX
+from typing import Union, Callable, Optional, Any
 from prompt_toolkit.document import Document
 from prompt_toolkit.shortcuts.prompt import (
-    PromptSession)
+    PromptSession, CompleteStyle)
 from prompt_toolkit.styles import merge_styles, Style
 from prompt_toolkit.validation import Validator
-from typing import Union, Callable, Optional, Any
+
+from questionary.completer import PathCompleter, ExecutableCompleter
+
+
 try:
     from typing import Text, Type
 except ImportError:
     from typing_extensions import Text, Type
-
-from questionary.constants import DEFAULT_STYLE, DEFAULT_QUESTION_PREFIX
-from questionary.prompts.common import build_validator
-from questionary.question import Question
 
 
 def text(message: Text,
@@ -23,7 +26,9 @@ def text(message: Text,
                          None] = None,  # noqa
          qmark: Text = DEFAULT_QUESTION_PREFIX,
          style: Optional[Style] = None,
-         **kwargs: Any) -> Question:
+         path_autocomplete=False,
+         exec_autocomplete=False,
+         ** kwargs: Any) -> Question:
     """Prompt the user to enter a free text message.
 
        This question type can be used to prompt the user for some text input.
@@ -59,10 +64,20 @@ def text(message: Text,
     def get_prompt_tokens():
         return [("class:qmark", qmark),
                 ("class:question", ' {} '.format(message))]
+    promptArgs = dict({
+        'style': merged_style,
+        'validator': validator,
+        'complete_style': CompleteStyle.READLINE_LIKE,
+    })
+
+    if path_autocomplete:
+        promptArgs['completer'] = PathCompleter(
+            expanduser=True, delimiters=' \t\n;,')
+    elif exec_autocomplete:
+        promptArgs['completer'] = ExecutableCompleter(delimiters=' \t\n;,')
 
     p = PromptSession(get_prompt_tokens,
-                      style=merged_style,
-                      validator=validator,
+                      **promptArgs,
                       **kwargs)
     p.default_buffer.reset(Document(default))
 
