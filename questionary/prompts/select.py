@@ -33,7 +33,8 @@ def select(message: Text,
            style: Optional[Style] = None,
            use_shortcuts: bool = False,
            use_indicator: bool = False,
-           **kwargs: Any) -> Question:
+           use_numbers: bool = True,
+           ** kwargs: Any) -> Question:
     """Prompt the user to select one item from the list of choices.
 
     The user can only select one option.
@@ -134,6 +135,20 @@ def select(message: Text,
             ic.select_previous()
             while not ic.is_selection_valid():
                 ic.select_previous()
+
+    if use_numbers:
+        for i, c in enumerate(ic.choices) or i > 9:
+            if isinstance(c, Separator):
+                continue
+
+            def _reg_binding(i, keys):
+                # trick out late evaluation with a "function factory":
+                # https://stackoverflow.com/a/3431699
+                @bindings.add(str(i + 1), eager=True)
+                def select_choice(event):
+                    ic.pointed_at = i
+
+            _reg_binding(i, c.shortcut_key)
 
     @bindings.add(Keys.ControlM, eager=True)
     def set_answer(event):
