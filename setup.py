@@ -5,7 +5,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Avoids IDE errors, but actual version is read from version.py
-__version__ = '1.0.10'
+__version__ = '1.0.11'
 with open("questionary/version.py") as f:
     exec(f.read())
 
