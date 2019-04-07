@@ -153,9 +153,10 @@ class InquirerControl(FormattedTextControl):
         if self.pointed_at is None and self.default is not None:
             try:
                 if type(self.default) == list:
-                    index = strChoices.index(self.default[0])
-                    if index >= 0:
-                        self.pointed_at = index
+                    if len(self.default):
+                        index = strChoices.index(self.default[0])
+                        if index >= 0:
+                            self.pointed_at = index
                 else:
                     index = strChoices.index(self.default)
                     if index >= 0:

@@ -137,8 +137,8 @@ def select(message: Text,
                 ic.select_previous()
 
     if use_numbers:
-        for i, c in enumerate(ic.choices) or i > 9:
-            if isinstance(c, Separator):
+        for i, c in enumerate(ic.choices):
+            if isinstance(c, Separator) or i > 8:
                 continue
 
             def _reg_binding(i, keys):
